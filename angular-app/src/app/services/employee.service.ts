@@ -131,4 +131,12 @@ export class EmployeeService {
     );
     this.saveToStorage();
   }
+
+  getEmployees() {
+    return this.employees.asReadonly();
+  }
+
+  getEmployeeById(id: string) {
+    return this.employees().find(e => e.id === id);
+  }
 }

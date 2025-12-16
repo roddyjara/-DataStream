@@ -49,6 +49,22 @@ export const routes: Routes = [
         canActivate: [adminGuard]
       },
       {
+        path: 'clientes',
+        loadComponent: () => import('./components/clients/client-list/client-list.component').then(m => m.ClientListComponent)
+      },
+      {
+        path: 'clientes/nuevo',
+        loadComponent: () => import('./components/clients/client-form/client-form.component').then(m => m.ClientFormComponent)
+      },
+      {
+        path: 'clientes/:id',
+        loadComponent: () => import('./components/clients/client-detail/client-detail.component').then(m => m.ClientDetailComponent)
+      },
+      {
+        path: 'clientes/:id/editar',
+        loadComponent: () => import('./components/clients/client-form/client-form.component').then(m => m.ClientFormComponent)
+      },
+      {
         path: 'contactos',
         loadComponent: () => import('./components/contacts/contacts.component').then(m => m.ContactsComponent)
       },

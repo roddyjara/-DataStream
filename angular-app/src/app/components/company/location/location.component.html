@@ -1,20 +1,52 @@
 <div class="location-page">
-  <h1>Ubicación</h1>
+  <h1>Ubicación de la Empresa</h1>
+
+  <p class="location-intro">
+    Estamos donde la tecnología y la seguridad se encuentran para brindar soluciones confiables.
+  </p>
 
   <div class="location-card">
+
+    <!-- MAPA -->
     <div class="map-placeholder">
-      <div class="map-icon">📍</div>
-      <p>Mapa de ubicación</p>
+      <iframe
+        title="Ubicación de la empresa en Dolores, Buenos Aires"
+        src="https://www.google.com/maps?q=Dolores,+Buenos+Aires,+Argentina&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+      <a
+        class="map-link"
+        href="https://maps.app.goo.gl/hR1xDx42Qc7qKbtS9"
+        target="_blank"
+        rel="noopener noreferrer">
+        Ver ubicación en Google Maps
+      </a>
     </div>
 
+    <!-- INFORMACIÓN -->
     <div class="location-details">
       <h2>{{ companyService.company()?.name }}</h2>
-      
+
       <div class="detail-item">
-        <span class="icon">🏢</span>
+        <span class="icon">📍</span>
         <div class="info">
           <span class="label">Dirección</span>
-          <span class="value">{{ companyService.company()?.address }}</span>
+          <span class="value">
+            {{ companyService.company()?.address }}<br>
+            Dolores, Buenos Aires, Argentina
+          </span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">🧭</span>
+        <div class="info">
+          <span class="label">Referencia</span>
+          <span class="value">
+            Zona céntrica, fácil acceso y estacionamiento cercano
+          </span>
         </div>
       </div>
 
@@ -29,27 +61,35 @@
       <div class="detail-item">
         <span class="icon">📧</span>
         <div class="info">
-          <span class="label">Email</span>
+          <span class="label">Correo electrónico</span>
           <span class="value">{{ companyService.company()?.email }}</span>
         </div>
       </div>
 
+      <!-- HORARIOS -->
       <div class="schedule">
         <h3>Horario de Atención</h3>
+
         <div class="schedule-item">
-          <span>Lunes - Viernes</span>
-          <span>9:00 AM - 6:00 PM</span>
+          <span>Lunes a Viernes</span>
+          <span>09:00 – 18:00</span>
         </div>
+
         <div class="schedule-item">
-          <span>Sábado</span>
-          <span>9:00 AM - 1:00 PM</span>
+          <span>Sábados</span>
+          <span>09:00 – 13:00</span>
         </div>
+
         <div class="schedule-item">
-          <span>Domingo</span>
+          <span>Domingos</span>
           <span>Cerrado</span>
         </div>
       </div>
+
+      <p class="location-quote">
+        “La seguridad comienza con una ubicación confiable y un equipo comprometido.”
+      </p>
     </div>
   </div>
 </div>
-
+        

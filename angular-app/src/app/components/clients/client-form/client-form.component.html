@@ -1,0 +1,152 @@
+<div class="client-form">
+  <div class="form-header">
+    <h2>{{ isEdit ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+    <button class="btn-secondary" (click)="cancel()">Cancelar</button>
+  </div>
+
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Nombre / Razón Social *</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          [class.error]="clientForm.get('name')?.invalid && clientForm.get('name')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+          {{ getErrorMessage('name') }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="city">Ciudad *</label>
+        <input
+          id="city"
+          type="text"
+          formControlName="city"
+          [class.error]="clientForm.get('city')?.invalid && clientForm.get('city')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('city')?.invalid && clientForm.get('city')?.touched">
+          {{ getErrorMessage('city') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Dirección *</label>
+      <input
+        id="address"
+        type="text"
+        formControlName="address"
+        [class.error]="clientForm.get('address')?.invalid && clientForm.get('address')?.touched"
+      >
+      <span class="error-message" *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched">
+        {{ getErrorMessage('address') }}
+      </span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">Teléfono *</label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          [class.error]="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched">
+          {{ getErrorMessage('phone') }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          [class.error]="clientForm.get('email')?.invalid && clientForm.get('email')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+          {{ getErrorMessage('email') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="serviceDate">Fecha del Servicio *</label>
+        <input
+          id="serviceDate"
+          type="date"
+          formControlName="serviceDate"
+          [class.error]="clientForm.get('serviceDate')?.invalid && clientForm.get('serviceDate')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('serviceDate')?.invalid && clientForm.get('serviceDate')?.touched">
+          {{ getErrorMessage('serviceDate') }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="scheduledTime">Horario Programado *</label>
+        <input
+          id="scheduledTime"
+          type="text"
+          formControlName="scheduledTime"
+          placeholder="ej: 09:00-12:00"
+          [class.error]="clientForm.get('scheduledTime')?.invalid && clientForm.get('scheduledTime')?.touched"
+        >
+        <span class="error-message" *ngIf="clientForm.get('scheduledTime')?.invalid && clientForm.get('scheduledTime')?.touched">
+          {{ getErrorMessage('scheduledTime') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="actualTime">Horario Real de Trabajo</label>
+        <input
+          id="actualTime"
+          type="text"
+          formControlName="actualTime"
+          placeholder="ej: 09:15-11:45"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="assignedEmployeeId">Empleado Asignado *</label>
+        <select
+          id="assignedEmployeeId"
+          formControlName="assignedEmployeeId"
+          [class.error]="clientForm.get('assignedEmployeeId')?.invalid && clientForm.get('assignedEmployeeId')?.touched"
+        >
+          <option value="">Seleccionar empleado</option>
+          <option *ngFor="let employee of employees()" [value]="employee.id">
+            {{ employee.firstName }} {{ employee.lastName }}
+          </option>
+        </select>
+        <span class="error-message" *ngIf="clientForm.get('assignedEmployeeId')?.invalid && clientForm.get('assignedEmployeeId')?.touched">
+          {{ getErrorMessage('assignedEmployeeId') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="observations">Observaciones del Servicio</label>
+      <textarea
+        id="observations"
+        formControlName="observations"
+        rows="4"
+        placeholder="Detalles adicionales del servicio..."
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" (click)="cancel()">Cancelar</button>
+      <button type="submit" class="btn-primary" [disabled]="clientForm.invalid">
+        {{ isEdit ? 'Actualizar' : 'Crear' }} Cliente
+      </button>
+    </div>
+  </form>
+</div>

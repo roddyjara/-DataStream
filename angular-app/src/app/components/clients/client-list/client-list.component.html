@@ -1,0 +1,45 @@
+<div class="client-list">
+  <div class="header">
+    <h2>Gestión de Clientes</h2>
+    <button *ngIf="canCreateClient()" class="btn-primary" (click)="createClient()">
+      Nuevo Cliente
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="client-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Ciudad</th>
+          <th>Email</th>
+          <th>Fecha Servicio</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of filteredClients()" class="client-row">
+          <td>{{ client.name }}</td>
+          <td>{{ client.city }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.serviceDate | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <span class="status" [class]="'status-' + client.status">
+              {{ getStatusText(client.status) }}
+            </span>
+          </td>
+          <td class="actions">
+            <button class="btn-secondary" (click)="viewClient(client)">Ver</button>
+            <button *ngIf="canEditClient(client)" class="btn-secondary" (click)="editClient(client)">Editar</button>
+            <button *ngIf="currentUser()?.role === 'admin'" class="btn-danger" (click)="deleteClient(client)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filteredClients().length === 0" class="no-clients">
+    <p>No hay clientes para mostrar.</p>
+  </div>
+</div>

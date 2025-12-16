@@ -44,6 +44,19 @@
         </div>
       </div>
 
+      <!-- Clientes -->
+      <div class="nav-group" [class.open]="activeSubmenu() === 'clientes'">
+        <button class="nav-item" (click)="toggleSubmenu('clientes')">
+          <span class="icon">👥</span>
+          Clientes
+          <span class="arrow">▼</span>
+        </button>
+        <div class="submenu">
+          <a routerLink="/clientes" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Lista de Clientes</a>
+          <a routerLink="/clientes/nuevo" routerLinkActive="active">Nuevo Cliente</a>
+        </div>
+      </div>
+
       <!-- Contactos -->
       <div class="nav-group" [class.open]="activeSubmenu() === 'contactos'">
         <button class="nav-item" (click)="toggleSubmenu('contactos')">
@@ -87,11 +100,39 @@
   <main class="main-content">
     <header class="top-bar">
       <button class="menu-toggle" (click)="toggleMenu()">☰</button>
-      <div class="breadcrumb">Sistema de Gestión de Personal</div>
+      <div class="breadcrumb">DataStream - Gestión Empresarial</div>
     </header>
     <div class="content">
       <router-outlet />
     </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>DataStream</h4>
+        <p>Soluciones tecnológicas y seguridad digital para empresas modernas.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Créditos</h4>
+        <p><strong>Desarrollado por:</strong> RoddyJara</p>
+        <p><strong>Administrador del Sistema:</strong> RoddyJara</p>
+        <h5>Equipo</h5>
+        <ul>
+          <li>Franco Vivas</li>
+          <li>Ramiro Traverna</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>📧 info@datastream.com</p>
+        <p>📞 +54 11 1234-5678</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 DataStream. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 </div>
 

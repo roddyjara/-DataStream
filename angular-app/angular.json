@@ -32,7 +32,8 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "outputPath": "dist/angular-app"
           },
           "configurations": {
             "production": {
@@ -72,6 +73,12 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/-DataStream/"
+          }
         }
       }
     }

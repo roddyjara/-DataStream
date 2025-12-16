@@ -8,9 +8,9 @@ export class AuthService {
   private readonly STORAGE_KEY = 'current_user';
   
   private users: User[] = [
-    { id: '1', email: 'admin@empresa.com', password: 'admin123', role: 'admin' },
-    { id: '2', email: 'empleado@empresa.com', password: 'emp123', role: 'employee', employeeId: 'EMP001' },
-    { id: '3', email: 'maria@empresa.com', password: 'maria123', role: 'employee', employeeId: 'EMP002' },
+    { id: '1', email: 'roddyjara@datastream.com', password: 'admin123', role: 'admin' },
+    { id: '2', email: 'francovivas@datastream.com', password: 'emp123', role: 'employee', employeeId: 'EMP001' },
+    { id: '3', email: 'ramirotraverna@datastream.com', password: 'emp456', role: 'employee', employeeId: 'EMP002' },
   ];
 
   currentUser = signal<User | null>(null);

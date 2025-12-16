@@ -1,11 +1,20 @@
 .location-page {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 1rem;
 
   h1 {
     color: #fff;
     font-size: 1.75rem;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1rem;
+    text-align: center;
+  }
+
+  .location-intro {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -13,53 +22,75 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.85) 0%,
+    rgba(22, 33, 62, 0.85) 100%
+  );
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 1.5rem;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr; /* En pantallas más pequeñas, los bloques se apilan */
+    padding: 1rem;
   }
 }
 
 .map-placeholder {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  min-height: 300px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed rgba(255, 255, 255, 0.1);
+  justify-content: flex-start;
 
-  .map-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+  iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
   }
 
-  p {
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
+  .map-link {
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+    color: #e94560;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.4);
+    margin-top: 1rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 .location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
   h2 {
     color: #fff;
-    margin: 0 0 1.5rem;
-    font-size: 1.25rem;
+    margin: 0;
+    font-size: 1.3rem;
+    text-align: center;
   }
 }
 
 .detail-item {
   display: flex;
-  align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1rem;
   padding: 0.75rem;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  align-items: center;
+  justify-content: flex-start;
 
   .icon {
     font-size: 1.25rem;
@@ -76,6 +107,7 @@
 
     .value {
       color: #fff;
+      font-size: 1rem;
     }
   }
 }
@@ -88,7 +120,8 @@
   h3 {
     color: #e94560;
     margin: 0 0 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
   }
 
   .schedule-item {
@@ -105,3 +138,10 @@
   }
 }
 
+.location-quote {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}

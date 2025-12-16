@@ -1,0 +1,88 @@
+<div class="client-detail" *ngIf="client">
+  <div class="detail-header">
+    <h2>{{ client.name }}</h2>
+    <div class="actions">
+      <button class="btn-secondary" (click)="goBack()">Volver</button>
+      <button *ngIf="canEdit()" class="btn-primary" (click)="editClient()">Editar</button>
+    </div>
+  </div>
+
+  <div class="detail-content">
+    <div class="info-section">
+      <h3>Información General</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Ciudad:</label>
+          <span>{{ client.city }}</span>
+        </div>
+        <div class="info-item">
+          <label>Dirección:</label>
+          <span>{{ client.address }}</span>
+        </div>
+        <div class="info-item">
+          <label>Teléfono:</label>
+          <span>{{ client.phone }}</span>
+        </div>
+        <div class="info-item">
+          <label>Email:</label>
+          <span>{{ client.email }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-section">
+      <h3>Detalles del Servicio</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Fecha del Servicio:</label>
+          <span>{{ client.serviceDate | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="info-item">
+          <label>Horario Programado:</label>
+          <span>{{ client.scheduledTime }}</span>
+        </div>
+        <div class="info-item" *ngIf="client.actualTime">
+          <label>Horario Real:</label>
+          <span>{{ client.actualTime }}</span>
+        </div>
+        <div class="info-item">
+          <label>Estado:</label>
+          <span class="status" [class]="'status-' + client.status">{{ getStatusText(client.status) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="assignment-section">
+      <h3>Asignación</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Empleado Asignado:</label>
+          <span *ngIf="assignedEmployee">{{ assignedEmployee.firstName }} {{ assignedEmployee.lastName }}</span>
+          <span *ngIf="!assignedEmployee">No asignado</span>
+        </div>
+        <div class="info-item">
+          <label>Creado por:</label>
+          <span>{{ client.createdBy === '1' ? 'Administrador' : 'Empleado' }}</span>
+        </div>
+        <div class="info-item">
+          <label>Fecha de Creación:</label>
+          <span>{{ client.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        <div class="info-item">
+          <label>Última Actualización:</label>
+          <span>{{ client.updatedAt | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="observations-section" *ngIf="client.observations">
+      <h3>Observaciones</h3>
+      <p>{{ client.observations }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!client" class="not-found">
+  <h2>Cliente no encontrado</h2>
+  <button class="btn-primary" (click)="goBack()">Volver a la lista</button>
+</div>
