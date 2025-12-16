@@ -1,0 +1,55 @@
+<div class="employee-list-page">
+  <div class="page-header">
+    <h1>Lista de Empleados</h1>
+    <a routerLink="/empleados/nuevo" class="btn-primary">+ Nuevo Empleado</a>
+  </div>
+
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Posición</th>
+          <th>Departamento</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (emp of employeeService.employees(); track emp.id) {
+          <tr>
+            <td>{{ emp.id }}</td>
+            <td>
+              <div class="emp-name">
+                <span class="avatar">{{ emp.firstName.charAt(0) }}{{ emp.lastName.charAt(0) }}</span>
+                {{ emp.firstName }} {{ emp.lastName }}
+              </div>
+            </td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.position }}</td>
+            <td>{{ emp.department }}</td>
+            <td>
+              <span class="status-badge" [class.active]="emp.status === 'active'">
+                {{ emp.status === 'active' ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <a [routerLink]="['/empleados', emp.id]" class="btn-action view">👁️</a>
+                <a [routerLink]="['/empleados', emp.id, 'editar']" class="btn-action edit">✏️</a>
+                <button (click)="deleteEmployee(emp.id)" class="btn-action delete">🗑️</button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="empty-state">No hay empleados registrados</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+

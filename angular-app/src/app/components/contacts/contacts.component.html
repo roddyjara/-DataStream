@@ -1,0 +1,41 @@
+<div class="contacts-page">
+  <div class="page-header">
+    <h1>Directorio de Contactos</h1>
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Buscar contacto..."
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+      />
+    </div>
+  </div>
+
+  <div class="contacts-grid">
+    @for (contact of filteredContacts; track contact.id) {
+      <div class="contact-card">
+        <div class="avatar">{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</div>
+        <div class="contact-info">
+          <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
+          <p class="position">{{ contact.position }}</p>
+          <p class="department">{{ contact.department }}</p>
+        </div>
+        <div class="contact-details">
+          <a [href]="'mailto:' + contact.email" class="contact-link">
+            <span class="icon">📧</span>
+            {{ contact.email }}
+          </a>
+          <a [href]="'tel:' + contact.phone" class="contact-link">
+            <span class="icon">📞</span>
+            {{ contact.phone }}
+          </a>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>No se encontraron contactos</p>
+      </div>
+    }
+  </div>
+</div>
+

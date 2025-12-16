@@ -1,0 +1,97 @@
+<div class="layout" [class.menu-open]="menuOpen()">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">{{ companyService.company()?.name?.charAt(0) }}</div>
+      <div class="company-info">
+        <h2>{{ companyService.company()?.name }}</h2>
+        <span>{{ companyService.company()?.type }}</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="icon">📊</span>
+        Dashboard
+      </a>
+
+      <!-- Empresa -->
+      <div class="nav-group" [class.open]="activeSubmenu() === 'empresa'">
+        <button class="nav-item" (click)="toggleSubmenu('empresa')">
+          <span class="icon">🏢</span>
+          Empresa
+          <span class="arrow">▼</span>
+        </button>
+        <div class="submenu">
+          <a routerLink="/empresa/info" routerLinkActive="active">Información</a>
+          <a routerLink="/empresa/ubicacion" routerLinkActive="active">Ubicación</a>
+        </div>
+      </div>
+
+      <!-- Empleados -->
+      <div class="nav-group" [class.open]="activeSubmenu() === 'empleados'">
+        <button class="nav-item" (click)="toggleSubmenu('empleados')">
+          <span class="icon">👥</span>
+          Empleados
+          <span class="arrow">▼</span>
+        </button>
+        <div class="submenu">
+          @if (authService.isAdmin()) {
+            <a routerLink="/empleados" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Lista de Empleados</a>
+            <a routerLink="/empleados/nuevo" routerLinkActive="active">Nuevo Empleado</a>
+          }
+          <a routerLink="/empleados/mi-historial" routerLinkActive="active">Mi Historial</a>
+        </div>
+      </div>
+
+      <!-- Contactos -->
+      <div class="nav-group" [class.open]="activeSubmenu() === 'contactos'">
+        <button class="nav-item" (click)="toggleSubmenu('contactos')">
+          <span class="icon">📞</span>
+          Contactos
+          <span class="arrow">▼</span>
+        </button>
+        <div class="submenu">
+          <a routerLink="/contactos" routerLinkActive="active">Directorio</a>
+        </div>
+      </div>
+
+      <!-- Administrador -->
+      @if (authService.isAdmin()) {
+        <div class="nav-group" [class.open]="activeSubmenu() === 'admin'">
+          <button class="nav-item" (click)="toggleSubmenu('admin')">
+            <span class="icon">⚙️</span>
+            Administrador
+            <span class="arrow">▼</span>
+          </button>
+          <div class="submenu">
+            <a routerLink="/admin/usuarios" routerLinkActive="active">Gestión de Usuarios</a>
+          </div>
+        </div>
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="avatar">{{ authService.currentUser()?.email?.charAt(0)?.toUpperCase() }}</div>
+        <div class="user-details">
+          <span class="email">{{ authService.currentUser()?.email }}</span>
+          <span class="role">{{ authService.isAdmin() ? 'Administrador' : 'Empleado' }}</span>
+        </div>
+      </div>
+      <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-bar">
+      <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+      <div class="breadcrumb">Sistema de Gestión de Personal</div>
+    </header>
+    <div class="content">
+      <router-outlet />
+    </div>
+  </main>
+</div>
+

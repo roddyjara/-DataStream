@@ -1,0 +1,55 @@
+<div class="location-page">
+  <h1>Ubicación</h1>
+
+  <div class="location-card">
+    <div class="map-placeholder">
+      <div class="map-icon">📍</div>
+      <p>Mapa de ubicación</p>
+    </div>
+
+    <div class="location-details">
+      <h2>{{ companyService.company()?.name }}</h2>
+      
+      <div class="detail-item">
+        <span class="icon">🏢</span>
+        <div class="info">
+          <span class="label">Dirección</span>
+          <span class="value">{{ companyService.company()?.address }}</span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">📞</span>
+        <div class="info">
+          <span class="label">Teléfono</span>
+          <span class="value">{{ companyService.company()?.phone }}</span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <span class="icon">📧</span>
+        <div class="info">
+          <span class="label">Email</span>
+          <span class="value">{{ companyService.company()?.email }}</span>
+        </div>
+      </div>
+
+      <div class="schedule">
+        <h3>Horario de Atención</h3>
+        <div class="schedule-item">
+          <span>Lunes - Viernes</span>
+          <span>9:00 AM - 6:00 PM</span>
+        </div>
+        <div class="schedule-item">
+          <span>Sábado</span>
+          <span>9:00 AM - 1:00 PM</span>
+        </div>
+        <div class="schedule-item">
+          <span>Domingo</span>
+          <span>Cerrado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

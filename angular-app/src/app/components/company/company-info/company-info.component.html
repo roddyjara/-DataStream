@@ -1,0 +1,67 @@
+<div class="company-info-page">
+  <h1>Información de la Empresa</h1>
+
+  @if (companyService.company(); as company) {
+    <div class="company-card">
+      <div class="company-header">
+        <div class="logo">{{ company.name.charAt(0) }}</div>
+        <div class="company-title">
+          <h2>{{ company.name }}</h2>
+          <span class="type">{{ company.type }}</span>
+        </div>
+      </div>
+
+      <div class="company-description">
+        <p>{{ company.description }}</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="icon">📧</span>
+          <div class="details">
+            <span class="label">Email</span>
+            <span class="value">{{ company.email }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <div class="details">
+            <span class="label">Teléfono</span>
+            <span class="value">{{ company.phone }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">🌐</span>
+          <div class="details">
+            <span class="label">Sitio Web</span>
+            <span class="value">{{ company.website }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">📅</span>
+          <div class="details">
+            <span class="label">Año de Fundación</span>
+            <span class="value">{{ company.foundedYear }}</span>
+          </div>
+        </div>
+
+        <div class="info-item full-width">
+          <span class="icon">📍</span>
+          <div class="details">
+            <span class="label">Dirección</span>
+            <span class="value">{{ company.address }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cookie-notice">
+      <span class="icon">🍪</span>
+      <p>La información de la empresa se almacena en cookies del navegador para persistir entre sesiones.</p>
+    </div>
+  }
+</div>
+

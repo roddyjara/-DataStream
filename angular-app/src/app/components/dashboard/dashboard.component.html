@@ -1,0 +1,84 @@
+<div class="dashboard">
+<div class="welcome-section">
+  <h1>Bienvenido, {{ authService.currentUser()?.email?.split('@')?.[0] ?? 'Usuario' }}!</h1>
+    <p>Panel de control de {{ companyService.company()?.name }}</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-info">
+        <h3>{{ employeeService.employees().length }}</h3>
+        <p>Total Empleados</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-info">
+        <h3>{{ activeEmployees }}</h3>
+        <p>Empleados Activos</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🏢</div>
+      <div class="stat-info">
+        <h3>{{ departments }}</h3>
+        <p>Departamentos</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-info">
+        <h3>{{ companyService.company()?.foundedYear }}</h3>
+        <p>Año Fundación</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-cards">
+    <div class="info-card">
+      <h2>Información de la Empresa</h2>
+      <div class="info-content">
+        <p><strong>Nombre:</strong> {{ companyService.company()?.name }}</p>
+        <p><strong>Tipo:</strong> {{ companyService.company()?.type }}</p>
+        <p><strong>Email:</strong> {{ companyService.company()?.email }}</p>
+        <p><strong>Teléfono:</strong> {{ companyService.company()?.phone }}</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2>Tu Perfil</h2>
+      <div class="info-content">
+        <p><strong>Email:</strong> {{ authService.currentUser()?.email }}</p>
+        <p><strong>Rol:</strong> {{ authService.isAdmin() ? 'Administrador' : 'Empleado' }}</p>
+        @if (!authService.isAdmin()) {
+          <p><strong>ID Empleado:</strong> {{ authService.currentUser()?.employeeId }}</p>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (authService.isAdmin()) {
+    <div class="recent-employees">
+      <h2>Empleados Recientes</h2>
+      <div class="employee-list">
+        @for (emp of employeeService.employees().slice(0, 5); track emp.id) {
+          <div class="employee-item">
+            <div class="emp-avatar">{{ emp.firstName.charAt(0) }}{{ emp.lastName.charAt(0) }}</div>
+            <div class="emp-info">
+              <span class="name">{{ emp.firstName }} {{ emp.lastName }}</span>
+              <span class="position">{{ emp.position }}</span>
+            </div>
+            <span class="status" [class.active]="emp.status === 'active'">
+              {{ emp.status === 'active' ? 'Activo' : 'Inactivo' }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
+
